@@ -1,9 +1,17 @@
-<div class="row">
-	<% @products.each do |product| %>
-		<div class="col-md-3">
-			<a href="/products/<%= product.id %>">
-			<%= image_tag product.image.url,  class: "book"%>
-			</a>
+<h1 class="current-category"><%= params[:category] %></h1>
+
+  <% if @product.all.count == 0 %>
+     <h1>There are no books currently in this category</h1>
+  <% else %>
+  <div class="row">
+		<% @products.each do |product| %>
+			<div class="col-md-3">
+					<a href="/products/<%= product.id %>">
+					<%= image_tag product.image.url,  class: "book"%>
+					</a>
 			</div>
 	<% end %>
-</div>
+
+	</div>
+
+	<%end%>

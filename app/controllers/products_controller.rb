@@ -2,7 +2,13 @@ class ProductsController < ApplicationController
 	before_action :find_product, only:[:show, :edit, :update, :destroy]
 	before_action :authenticate_user!
 	def index
-		@products = Product.all.order("created_at DESC")
+		if params[:category].blank?
+		 @book = Product.all.order("created_at DESC")
+
+		else
+		 category_id = Category.find_by(name: params[:category]).id
+		 @book=Product.where(category_id: category_id).order("created_at DESC")
+		end
 	end
 
 	def new
@@ -16,7 +22,6 @@ class ProductsController < ApplicationController
 		else
 		render 'new' 
 		end
-
 	end
 
 	def show
