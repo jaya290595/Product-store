@@ -20,7 +20,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick', '~> 4.3'
 gem 'devise', '~> 4.4', '>= 4.4.1'
-
+gem 'pry'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

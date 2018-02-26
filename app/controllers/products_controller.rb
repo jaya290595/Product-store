@@ -3,20 +3,22 @@ class ProductsController < ApplicationController
 	before_action :authenticate_user!
 	def index
 		if params[:category].blank?
-		 @book = Product.all.order("created_at DESC")
+		 @product = Product.all.order("created_at DESC")
 
 		else
 		 category_id = Category.find_by(name: params[:category]).id
-		 @book=Product.where(category_id: category_id).order("created_at DESC")
+		 @product=Product.where(category_id: category_id).order("created_at DESC")
 		end
 	end
 
 	def new
 		@product = Product.new
+		@categories = Category.all.map { |c| [c.name, c.id] }
 	end
 
 	def create
-		@product = Product.create(product_params)		
+		@product = Product.create(product_params)	
+		@product.category_id = params[:category_id]	
 		if @product.save
 			redirect_to root_path
 		else
@@ -25,10 +27,15 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@product = Product.find(params[:id])
+		if @product.reviews.blank?
+			@average_review = 0
+		else
+			@average_review =	@product.reviews.average(:rating).round(2)
+		end
 	end
 
 	def edit
+		@categories = Category.all.map { |c| [c.name, c.id] }
 	end
 
 	def update

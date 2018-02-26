@@ -7,8 +7,31 @@
 
 	      <h2 class="book-title"><%= @product.name %> </h2>
 	      <h3 class="book-author"><%= @product.price %></h3>
+	      <h2 class="average-rating">Average Rating</h2>
+	      <div class="average-review-rating" data-score=<%= @average_review %>></div>
+	      <span class="number-of-reviews">Based on <%= @product.reviews.count %> reviews </span>
 	      <p class="book-desc"><%= @product.status %></p>
 	    </div>
+	  </div>
+
+	</div>
+
+
+	<div class="row">
+	  <div class="col-md-4">
+	    <div class="reviews">
+
+	      <h1>Reviews</h1>
+	      <%= render @product.reviews %>
+
+	      <div>
+
+	        <%= link_to "Add Review", new_product_review_path(@product), class: "btn-custom" %>
+
+	      </div>
+
+	    </div>
+
 	  </div>
 
 	</div>
@@ -21,3 +44,24 @@
 	          <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-custom" %>
 	     
 	 </div> 
+
+	 <script> // for ratings
+	   $('.review-rating').raty({
+	     readOnly: true,
+	     score: function() {
+	       return $(this).attr('data-score');
+	     },
+	     path: '/assets/'
+	   });
+	 </script>
+
+	 <script> //for average ratings
+	   $('.average-review-rating').raty({
+	     readOnly: true,
+	     score: function() {
+	       return $(this).attr('data-score');
+	     },
+	     path: '/assets/'
+	   });
+	 </script>
+

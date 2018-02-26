@@ -2,4 +2,12 @@
   <div class="edit-book-form">
 
 <h1> Edit product </h1>
-<%= render 'form' %>
+<%= simple_form_for @product do |f| %>
+	<%=f.input :name, label: 'Product name' %>
+	<%= f.select :category_id , @categories %>
+	<%= f.file_field :image %>
+	<%=f.input :price %>
+	<%= f.input :status %>
+	<%= f.button :submit , label: 'Save product', class: "btn-custom2" %>
+<% end %>
+
