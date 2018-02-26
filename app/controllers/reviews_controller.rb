@@ -7,7 +7,7 @@ class ReviewsController < ApplicationController
 	end
 
 	def create
-		@product= Product.find(params[:product_id])
+	@product= Product.find(params[:product_id])
     @review= @product.reviews.create(review_params)
     @review.user_id = current_user.id
       if @review.save
