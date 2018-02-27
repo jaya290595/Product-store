@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
 	mount_uploader :image, ImageUploader
 	has_many :reviews
-	belongs_to :user
+	has_many :users
+	belongs_to :cart
 end

@@ -27,6 +27,7 @@ class ProductsController < ApplicationController
 	end
 
 	def show
+	  session[:product_id] = @product.id 
 		if @product.reviews.blank?
 			@average_review = 0
 		else
