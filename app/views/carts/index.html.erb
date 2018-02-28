@@ -1,3 +1,76 @@
-<% @carts.each do |cart|%>
-	<%= cart.product.status%>
-<%end%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 style="text-align: center;"><u><i> Your Cart</i></u></h2>
+            
+            
+            <div class = "row ">
+            <div class="col-md-2 text-left">
+                <h3><i>Image</i></h3>    
+            </div>                
+            
+                <div class="col-md-2 text-left">
+                    <h3><i>name</i></h3>    
+                </div>                
+            
+                <div class="col-md-2 text-left">
+                    <h3><i>Price</i></h3>    
+                </div>
+                
+                <div class="col-md-2 text-left">
+                    <h3><i>Status</i></h3>    
+                </div>
+                <div class="col-md-2 text-left">
+                    <h3><i>Quantity</i></h3>    
+                </div>                
+                
+                <div class="col-md-2 text-left">
+                  <h3><i>Total</i></h3>    
+                </div>
+            </div>
+            <hr>
+            
+            
+            <% @carts.each do |cart| %>
+                <div class = "row">
+                    
+                    <div class="col-md-2">
+                        
+                        <div class="cart-card">
+                            <a href="<%= product_path(cart.product.try(:id))%>">
+                                <img alt="", src="<%=cart.product.try(:image_url) %> " class="cart-img">
+                            </a>
+                        </div>    
+                    
+                    </div>
+                    
+                    <div class = "col-md-2 cart-margin">
+                      <h3><%=cart.product.try(:name)%></h3>    
+                    </div>
+                    
+                    <div class = "col-md-2 cart-margin">
+                      <h3><%=cart.product.try(:price)%></h3>    
+                    </div>
+                    
+                    <div class="col-md-2 cart-margin">
+                      <h3><%=cart.product.try(:status)%></h3>    
+                    </div>
+                    
+                    <div class="col-md-2 cart-margin">
+                      <h3><%=cart.product.try(:quantity)%></h3>
+
+                    </div>
+
+                    <div class="col-md-2 kart-btn-margin">
+                      <%= link_to "Remove", cart_path(cart.id), method: :delete , class: "btn btn-danger" %> 
+                    </div>
+                    <hr>
+                </div>
+                
+              <% end %>
+        
+        </div>
+        
+    </div>
+</div>
+ 

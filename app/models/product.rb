@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 	mount_uploader :image, ImageUploader
-	has_many :reviews
-	has_many :users
-	belongs_to :cart
+	belongs_to :category
+	has_many :reviews , dependent: :destroy		
+	has_many :carts, dependent: :destroy
 end

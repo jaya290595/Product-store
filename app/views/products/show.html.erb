@@ -6,7 +6,7 @@
     <div class="book-info">
 
 	      <h2 class="book-title"><%= @product.name %> </h2>
-	      <h3 class="book-author"><%= @product.price %></h3>
+	      <h3 class="book-author"> Price : <%= @product.price %></h3>
 	      <h2 class="average-rating">Average Rating</h2>
 	      <div class="average-review-rating" data-score=<%= @average_review %>></div>
 	      <span class="number-of-reviews">Based on <%= @product.reviews.count %> reviews </span>

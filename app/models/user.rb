@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-  has_many :books
-  has_many :reviews
-  has_one :cart
+  has_many :reviews, dependent: :destroy
+  has_many :carts, dependent: :destroy
     
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
