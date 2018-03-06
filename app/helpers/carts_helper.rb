@@ -2,7 +2,6 @@ module CartsHelper
 
     def total(quantity,price)
       c = quantity*price
-      return c
+      return c 
     end
-
 end

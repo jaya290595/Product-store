@@ -30,8 +30,7 @@
                 </div>
             </div>
             <hr>
-            
-            
+            <% a=0 %>          
             <% @carts.each do |cart| %>
                 <div class = "row">
                     
@@ -64,18 +63,19 @@
 
                     <div class="col-md-2 cart-margin">
 
-                
                     <h3><%= total(cart.try(:quantity),cart.product.try(:price))%></h3>
+                    <% a = a+(total(cart.try(:quantity),cart.product.try(:price)))%>
                     </div>
-
                     <div class="col-md-2 cart-btn-margin">
                       <%= link_to "Remove", cart_path(cart.id), method: :delete , class: "btn btn-danger" %> 
                     </div>
-                    <hr>
+                   
                 </div>
                 
               <% end %>
-        
+              <div class="col-md-2 text-right", style="text-align: right; color: blue;">
+                <h3><i>Grandtotal<br><%=a%></i></h3>    
+              </div>
         </div>
         
     </div>
