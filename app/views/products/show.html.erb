@@ -3,74 +3,80 @@
   <h2><%= image_tag @product.image.url%></h2>
   </div>
   <div class="col-md-8">
-    <div class="book-info">
+    <div class="book-info", style="padding: 3.5em 1.25em;">
 
-	      <h2 class="book-title"><%= @product.name %> </h2>
-	      <h3 class="book-author"> Price : <%= @product.price %></h3>
-	      <h2 class="average-rating">Average Rating</h2>
-	      <div class="average-review-rating" data-score=<%= @average_review %>></div>
-	      <span class="number-of-reviews">Based on <%= @product.reviews.count %> reviews </span>
-	      <p class="book-desc"
-	      <% if @product.status%>
-	      	<h4 style="text-align: right; color: blue;"> Product is available </h4>
-	      <% else %>
-	      	<h4 style="text-align: right; color: red;"> Out of stock </h4>
-	      <% end %> </p>
-	      <div>
+          <h2 class="book-title"><%= @product.name %> </h2>
+          <h3 class="book-author"> Price : <%= @product.price %></h3>
+          <h2 class="average-rating">Average Rating</h2>
+          <div class="average-review-rating" data-score=<%= @average_review %>></div>
+          <span class="number-of-reviews">Based on <%= @product.reviews.count %> reviews </span>
+          <p class="book-desc"
+          <% if @product.status %>
+            <h4 style="text-align: right; color: blue;"> Product is available </h4>
+          <% else %>
+            <h4 style="text-align: right; color: red;"> Out of stock </h4>
+          <% end %> </p>
+          <div>
+            <li class="dropdown">
+          <%= form_for :cart, url: carts_path, method: :post do |form| %>
 
-	        <%= link_to "Add to cart", carts_path, method: :post, class: "btn-custom" %>
-	      </div>
-	    </div>
-	  </div>
+                  <%= form.select :quantity, [1,2,3,4,5], prompt: "Select Quantity", class: "btn-custom"%> <br>
+                  <ul class="nav navbar-nav navbar-right">
+                  <%=form.submit "Add to cart", class: "btn-custom" %>
+                  <% end %>
+            </li>
+          </ul> 
+          </div>
+        </div>
+      </div>
 
-	</div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-4">
+        <div class="reviews">
 
-	<div class="row">
-	  <div class="col-md-4">
-	    <div class="reviews">
+          <h1>Reviews</h1>
+          <%= render @product.reviews %>
 
-	      <h1>Reviews</h1>
-	      <%= render @product.reviews %>
+          <div>
 
-	      <div>
+            <%= link_to "Add Review", new_product_review_path(@product),class: "btn-custom" %>
 
-	        <%= link_to "Add Review", new_product_review_path(@product),class: "btn-custom" %>
+          </div>
 
-	      </div>
+        </div>
 
-	    </div>
+      </div>
 
-	  </div>
+    </div>
 
-	</div>
+    <div class="links btn-group">
 
-	<div class="links btn-group">
+      <%= link_to "Back", root_path, class: "btn btn-custom" %> 
 
-	  <%= link_to "Back", root_path, class: "btn btn-custom" %> 
+              <%= link_to "Edit", edit_product_path(@product), class: "btn btn-custom" %>
+              <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-custom" %>
+         
+     </div> 
 
-	          <%= link_to "Edit", edit_product_path(@product), class: "btn btn-custom" %>
-	          <%= link_to "Delete", product_path(@product), method: :delete, data: { confirm: "Are you sure?"}, class: "btn btn-custom" %>
-	     
-	 </div> 
+     <script> // for ratings
+       $('.review-rating').raty({
+         readOnly: true,
+         score: function() {
+           return $(this).attr('data-score');
+         },
+         path: '/assets/'
+       });
+     </script>
 
-	 <script> // for ratings
-	   $('.review-rating').raty({
-	     readOnly: true,
-	     score: function() {
-	       return $(this).attr('data-score');
-	     },
-	     path: '/assets/'
-	   });
-	 </script>
-
-	 <script> //for average ratings
-	   $('.average-review-rating').raty({
-	     readOnly: true,
-	     score: function() {
-	       return $(this).attr('data-score');
-	     },
-	     path: '/assets/'
-	   });
-	 </script>
+     <script> //for average ratings
+       $('.average-review-rating').raty({
+         readOnly: true,
+         score: function() {
+           return $(this).attr('data-score');
+         },
+         path: '/assets/'
+       });
+     </script>
 

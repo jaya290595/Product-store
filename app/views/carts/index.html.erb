@@ -1,13 +1,14 @@
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12", style="margin-right: 110px;">
             <h2 style="text-align: center;"><u><i> Your Cart</i></u></h2>
             
             
             <div class = "row ">
-            <div class="col-md-2 text-left">
-                <h3><i>Image</i></h3>    
-            </div>                
+              <div class="col-md-2 text-left">
+                  <h3><i>Image</i></h3>   
+              </div>                
             
                 <div class="col-md-2 text-left">
                     <h3><i>name</i></h3>    
@@ -57,11 +58,17 @@
                     </div>
                     
                     <div class="col-md-2 cart-margin">
-                      <h3><%=cart.product.try(:quantity)%></h3>
+                      <h3><%=cart.try(:quantity)%></h3>
 
                     </div>
 
-                    <div class="col-md-2 kart-btn-margin">
+                    <div class="col-md-2 cart-margin">
+
+                
+                    <h3><%= total(cart.try(:quantity),cart.product.try(:price))%></h3>
+                    </div>
+
+                    <div class="col-md-2 cart-btn-margin">
                       <%= link_to "Remove", cart_path(cart.id), method: :delete , class: "btn btn-danger" %> 
                     </div>
                     <hr>
