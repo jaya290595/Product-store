@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
-    before_action :find_cart, only: [:show, :edit, :update, :destroy]
-    
+before_action :find_cart, only: [:show, :edit, :update, :destroy]
+
     def create
         @cart = Cart.new(cart_params)
         @cart.product_id = session[:product_id]
