@@ -22,14 +22,13 @@
           <% end %> </p>
           <div>
             <p class="dropdown">
-          <%= form_for :cart, url: carts_path, method: :post do |form| %>
-
+              <% if @product.status == true%>
+                <%= form_for :cart, url: carts_path, method: :post do |form| %>
                   <%= form.select :quantity, [1,2,3,4,5], prompt: "Select Quantity", class: "btn-custom"%> <br>
-                  <ul class="nav navbar-nav navbar-right">
-                  <%=form.submit "Add to cart", class: "btn-custom" %>
-                    
-
-                  <% end %>
+                    <ul class="nav navbar-nav navbar-right">
+                      <%=form.submit "Add to cart", class: "btn-custom" %>
+                <% end %>
+              <%end%>
                   
             </p>
 
