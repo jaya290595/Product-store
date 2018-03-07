@@ -4,4 +4,5 @@ module CartsHelper
       c = quantity*price
       return c 
     end
+
 end

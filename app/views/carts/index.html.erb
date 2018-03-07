@@ -19,9 +19,6 @@
                 </div>
                 
                 <div class="col-md-2 text-left">
-                    <h3><i>Status</i></h3>    
-                </div>
-                <div class="col-md-2 text-left">
                     <h3><i>Quantity</i></h3>    
                 </div>                
                 
@@ -53,18 +50,13 @@
                     </div>
                     
                     <div class="col-md-2 cart-margin">
-                      <h3><%=cart.product.try(:status)%></h3>    
-                    </div>
-                    
-                    <div class="col-md-2 cart-margin">
                       <h3><%=cart.try(:quantity)%></h3>
-
                     </div>
 
                     <div class="col-md-2 cart-margin">
 
                     <h3><%= total(cart.try(:quantity),cart.product.try(:price))%></h3>
-                    <% a = a+(total(cart.try(:quantity),cart.product.try(:price)))%>
+                      <% a = a+(total(cart.try(:quantity),cart.product.try(:price)))%>
                     </div>
                     <div class="col-md-2 cart-btn-margin">
                       <%= link_to "Remove", cart_path(cart.id), method: :delete , class: "btn btn-danger" %> 
@@ -74,7 +66,7 @@
                 
               <% end %>
               <div class="col-md-2 text-right", style="text-align: right; color: blue;">
-                <h3><i>Grandtotal<br><%=a%></i></h3>    
+                <h3><i>Grandtotal<br><%= a%></i></h3>    
               </div>
         </div>
         
